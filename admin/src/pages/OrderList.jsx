@@ -552,7 +552,8 @@ const OrderList = () => {
   // 🟢 Orders fetch karne ka function
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/order/admin/all", {
+      // const res = await axios.get("http://localhost:5000/api/order/admin/all", {
+      const res = await axios.get("https://raja-electronic.onrender.com/api/order/admin/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data);
@@ -565,7 +566,8 @@ const OrderList = () => {
   const updateDeliveryStatus = async (orderId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/order/admin/${orderId}/status`,
+        // `http://localhost:5000/api/order/admin/${orderId}/status`,
+        `https://raja-electronic.onrender.com/api/order/admin/${orderId}/status`,
         { deliveryStatus: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

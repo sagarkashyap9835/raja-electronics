@@ -9,7 +9,8 @@ const ItemList = () => {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/product/all");
+      // const res = await axios.get("http://localhost:5000/api/product/all");
+      const res = await axios.get("https://raja-electronic.onrender.com/api/product/all");
       if (res.data.success) setItems(res.data.products);
     } catch (err) {
       console.error("Failed to fetch items", err);
@@ -19,7 +20,8 @@ const ItemList = () => {
   const handleDelete = async (id) => {
     if (!token) return alert("Please login as admin");
     try {
-      await axios.delete(`http://localhost:5000/api/product/delete/${id}`, {
+      // await axios.delete(`http://localhost:5000/api/product/delete/${id}`, {
+      await axios.delete(`https://raja-electronic.onrender.com/api/product/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Item deleted ✅");
