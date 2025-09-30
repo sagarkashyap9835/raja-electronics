@@ -13,7 +13,36 @@ import contactRoutes from "./routes/contactRoute.js";
 
 dotenv.config();
 const app=express();
-app.use(cors());
+// app.use(cors());
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5175",
+  "https://electromart-iivz.onrender.com"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS: " + origin));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+
+
+
+
+
+
+
 app.use(bodyParser.json());
 // api end points nmsdjbbjhb 
 
