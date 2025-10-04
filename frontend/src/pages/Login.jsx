@@ -61,7 +61,7 @@ navigate('/')
           {state === 'Sign Up' ? 'Create Account' : 'Login'}
         </h2>
         <p className="text-gray-500 text-sm mb-6 text-center">
-          Please {state === 'Sign Up' ? 'create an account' : 'login'} to book an appointment
+          Please {state === 'Sign Up' ? 'create an account' : 'login'} to order electrical appliances
         </p>
 
         {state === 'Sign Up' && (
