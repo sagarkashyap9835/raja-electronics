@@ -23,6 +23,7 @@ try {
       setToken(data.token)
       toast.success("User Registered Successfully")
     }else{
+      toast.error(data.message||"user already exists")
       toast.error(data.message)
     }
   }
