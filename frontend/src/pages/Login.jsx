@@ -15,32 +15,62 @@ const Login = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     console.log({ name, email, password, state });
+// try {
+//   if(state==='Sign Up'){
+//     const {data}=await axios.post(backendUrl+'/api/user/register',{name,password,email})
+//     if(data.success){
+//       localStorage.setItem('token',data.token)
+//       setToken(data.token)
+//       toast.success("User Registered Successfully")
+//     }else{
+//       toast.error(data.message)
+//     }
+//   }
+//   else{
+//    const {data}=await axios.post(backendUrl+'/api/user/login',{password,email})
+//     if(data.success){
+//       localStorage.setItem('token',data.token)
+//       setToken(data.token)
+//          toast.success("User login Successfully")
+//     }else{
+//       toast.error(data.message)
+//     }
+//   }
+
+
+// } catch (error) {
+//   toast.error(error.message)
+// }
+
 try {
   if(state==='Sign Up'){
-    const {data}=await axios.post(backendUrl+'/api/user/register',{name,password,email})
-    if(data.success){
-      localStorage.setItem('token',data.token)
-      setToken(data.token)
-      toast.success("User Registered Successfully")
-    }else{
-      toast.error(data.message)
-    }
+    const { data } = await axios.post(backendUrl+'/api/user/register', { name, password, email });
+    toast.success(data.message);
+    localStorage.setItem('token', data.token);
+    setToken(data.token);
+  } else {
+    const { data } = await axios.post(backendUrl+'/api/user/login', { email, password });
+    toast.success(data.message);
+    localStorage.setItem('token', data.token);
+    setToken(data.token);
   }
-  else{
-   const {data}=await axios.post(backendUrl+'/api/user/login',{password,email})
-    if(data.success){
-      localStorage.setItem('token',data.token)
-      setToken(data.token)
-         toast.success("User login Successfully")
-    }else{
-      toast.error(data.message)
-    }
-  }
-
-
 } catch (error) {
-  toast.error(error.message)
+  // Backend error message
+  if (error.response && error.response.data && error.response.data.message) {
+    toast.error(error.response.data.message);
+  } else {
+    toast.error(error.message);
+  }
 }
+
+
+
+
+
+
+
+
+
   };
 
 useEffect(() => {
@@ -100,6 +130,7 @@ navigate('/')
             type="password"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring"
             value={password}
+            placeholder='password must be 8 character'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
