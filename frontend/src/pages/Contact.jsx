@@ -124,7 +124,8 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/contact", formData);
+      // const res = await axios.post("http://localhost:5000/api/contact", formData);
+      const res = await axios.post("https://raja-electronic.onrender.com/api/contact", formData);
       if (res.data.success) {
         toast.success("Message sent successfully ✅");
         setFormData({ name: "", email: "", message: "" });
